@@ -20,4 +20,3 @@ for (const hobby of person.hobbies) {
 if (person.role === Role.AUTHOR) {
     console.log(Role.AUTHOR);
 }
-//# sourceMappingURL=objs-arrays-enums.js.map
