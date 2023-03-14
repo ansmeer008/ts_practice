@@ -103,3 +103,16 @@ function addthings(a, b) {
 //함수 오버로드를 사용할 수도 있음.
 const result = addthings("Max", "Park");
 result.split(" ");
+/***************optional chaining********************/
+const fetchedUserData = {
+    id: "u1",
+    name: "Max",
+    job: { title: "CEO", description: "My own company" },
+};
+//규모가 크고 복잡한 에플리케이션에서는 콘솔을 찍는 시점에 일부 데이터가 설정되지 않았을 수 있음.
+//객체의 일부 속성이 설정되어 있는지 또는 정의되어 있는지 확실히 알 수 없는 중첩된 데이터로 구조화 작업을 수행하는 경우도 있음.
+console.log(fetchedUserData.job.title);
+//자바스크립트에서 객체가 존재하는지 여부를 확인하는 방식은 아래와 같다.
+console.log(fetchedUserData.job && fetchedUserData.job.title);
+//타입스크립트에서는 옵셔널 체이닝을 활용할 수 있다
+console.log(fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job.title);
