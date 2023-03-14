@@ -160,3 +160,19 @@ const userInputElement = document.getElementById("user-input");
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = "Hi there";
 }
+
+/***************인덱스 타입********************/
+//인덱스 타입은 객체가 지닐 수 있는 속성에 대해 보다 유연한 객체를 생성할 수 있게 해줌.
+
+//몇 개의 속성을 가질 지는 알 수 없지만 특정 타입이어야 할 때 인덱스 타입을 사용할 수 있고 대괄호를 사용한다.
+//인덱스 타입에서는 boolean 타입은 사용할 수 없음.
+//인덱스 타입을 지정해주면 아래 id와 같이 다른 속성을 지정해줄 때 인덱스 타입에 따라 타입을 지정해주어야 한다.
+interface ErrorContainer {
+  id: string;
+  [key: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  id: "1",
+  email: "Not a valid email",
+};
