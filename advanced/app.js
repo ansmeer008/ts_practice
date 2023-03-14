@@ -116,3 +116,15 @@ console.log(fetchedUserData.job.title);
 console.log(fetchedUserData.job && fetchedUserData.job.title);
 //타입스크립트에서는 옵셔널 체이닝을 활용할 수 있다
 console.log(fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job.title);
+/***************Null 병합********************/
+//null 데이터 처리에 도움을 주는 기능
+//어떤 데이터나 입력값이 있는데 그것이 null인지 undefined인지 유효한 데이터인지 알 수 없는 경우
+const userInput1 = null;
+//이렇게 사용하면 falshy한 값이면 모두 DEFAULT 문자열을 반환하게 되는데
+//입력값 없이 두고자 하는 빈문자열 같은 경우도 포함된다
+const storedData = userInput1 || "DEFAULT";
+const userInput2 = "";
+//아래와 같이 null 병합 연산자를 사용하면 null이나 undefined가 아니면 값을 사용한다.
+const nullishData = userInput2 !== null && userInput2 !== void 0 ? userInput2 : "DEFAULT";
+console.log(storedData);
+console.log(nullishData);
