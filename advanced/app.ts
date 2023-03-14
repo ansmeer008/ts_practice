@@ -94,3 +94,33 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1);
 useVehicle(v2);
+
+//구별된 유니언
+//구별된 유니언은 아래와 같이 유니언을 구성하는 모든 객체에 하나의 공통 속성만 있고
+//해당 속성이 유니언을 설명하므로, 이 속성을 switch문에 사용해 타입 안전성을 갖추고 객체에 어떤 속성을 사용할 수 있는지 파악 가능.
+
+interface Bird {
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animals = Bird | Horse;
+
+function moveAnimals(animal: Animals) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+  }
+  console.log("Moving at speed: " + speed);
+}
+
+moveAnimals({ type: "bird", flyingSpeed: 30 });
