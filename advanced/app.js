@@ -5,15 +5,6 @@ const e1 = {
     priviliges: ["create-server"],
     startDate: new Date(),
 };
-//***********************타입 가드***********************/
-// Combinabl과 같은 유니언 타입은 유연성을 가지지만 런타임 시 정확히 어떤 타입을 가질지 알아야 하는 경우들이 있음.
-function addthings(a, b) {
-    //타입 가드
-    if (typeof a === "string" || typeof b === "string") {
-        return a.toString() + b.toString();
-    }
-    return a + b;
-}
 function printEmployeeInformation(emp) {
     console.log("Name :" + emp.name);
     //타입 가드를 해주려고 할 때 typeof emp === 'Employee'와 같은 구문은 사용할 수 없다.
@@ -99,3 +90,16 @@ const errorBag = {
     id: "1",
     email: "Not a valid email",
 };
+function addthings(a, b) {
+    //타입 가드
+    if (typeof a === "string" || typeof b === "string") {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
+//아래와 같이 작성하면 result는 분명 문자열이 될 것이지만, 타입스크립트는 그것을 알지 못함.
+//그래서 result.split()와 같은 문자열 매서드를 사용하면 에러가 뜸.
+//형 변환 구문 as string으로 반환값이 string일 것임을 알려줄 수 있지만.
+//함수 오버로드를 사용할 수도 있음.
+const result = addthings("Max", "Park");
+result.split(" ");

@@ -28,14 +28,14 @@ type Universal = Combinabl & Numeric;
 
 //***********************타입 가드***********************/
 // Combinabl과 같은 유니언 타입은 유연성을 가지지만 런타임 시 정확히 어떤 타입을 가질지 알아야 하는 경우들이 있음.
-function addthings(a: Combinabl, b: Combinabl) {
-  //타입 가드
-  if (typeof a === "string" || typeof b === "string") {
-    return a.toString() + b.toString();
-  }
+// function addthings(a: Combinabl, b: Combinabl) {
+//   //타입 가드
+//   if (typeof a === "string" || typeof b === "string") {
+//     return a.toString() + b.toString();
+//   }
 
-  return a + b;
-}
+//   return a + b;
+// }
 
 type UnknownEmployee = Employee | Admin;
 
@@ -176,3 +176,26 @@ const errorBag: ErrorContainer = {
   id: "1",
   email: "Not a valid email",
 };
+
+/***************함수 오버로드********************/
+//함수 오버로드는 동일한 함수에 대해 여러 함수 시그니처를 정의할 수 있는 기능으로
+//다양한 매개변수를 가진 함수를 호출하는 여러가지 방법을 사용해 함수 내에서 작업을 수행할 수 있게 해줌.
+//타입스크립트가 자체적으로 함수의 반환 타입을 정확하게 추론하지 못하는 경우에 유용하다.
+
+//위에서 작성했던 addthings 함수를 사용함. 바로 아래 두 줄은 함수 오버로드 한 것.
+function addthings(a: string, b: string): string;
+function addthings(a: number, b: number): number;
+function addthings(a: Combinabl, b: Combinabl) {
+  //타입 가드
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+
+  return a + b;
+}
+//아래와 같이 작성하면 result는 분명 문자열이 될 것이지만, 타입스크립트는 그것을 알지 못함.
+//그래서 result.split()와 같은 문자열 매서드를 사용하면 에러가 뜸.
+//형 변환 구문 as string으로 반환값이 string일 것임을 알려줄 수 있지만.
+//함수 오버로드를 사용할 수도 있음.
+const result = addthings("Max", "Park");
+result.split(" ");
