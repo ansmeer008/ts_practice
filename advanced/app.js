@@ -28,3 +28,31 @@ function printEmployeeInformation(emp) {
 }
 printEmployeeInformation(e1);
 printEmployeeInformation({ name: "Nana", startDate: new Date() });
+//클래스에서 타입가드 사용하기
+class Car {
+    drive() {
+        console.log("Driving...");
+    }
+}
+class Truck {
+    drive() {
+        console.log("Driving a truck...");
+    }
+    loadCargo(amount) {
+        console.log("Loading Cargo..." + amount);
+    }
+}
+const v1 = new Car();
+const v2 = new Truck();
+function useVehicle(vehicle) {
+    vehicle.drive();
+    //   if ("loadCargo" in vehicle) {
+    //     vehicle.loadCargo(100);
+    //   }
+    //클래스에서는 타입 가드를 아래와 같이 써줄 수도 있다.
+    if (vehicle instanceof Truck) {
+        vehicle.loadCargo(1000);
+    }
+}
+useVehicle(v1);
+useVehicle(v2);
